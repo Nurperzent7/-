@@ -102,11 +102,15 @@ a {
   letter-spacing: 0.04em;
 }
 
-.brand-text span {
+.brand-text span,
+.brand-justitia {
   color: var(--gold-soft);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: none;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
 }
 
 .nav {
@@ -217,10 +221,45 @@ a {
 .hero h1 {
   margin: 0 0 22px;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(40px, 6vw, 68px);
   font-weight: 600;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.hero-line {
+  display: block;
+  margin-bottom: 10px;
+  font-size: clamp(16px, 2.1vw, 22px);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 232, 0.78);
+}
+
+.justitia {
+  display: block;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(58px, 9vw, 104px);
+  letter-spacing: 0.14em;
+  line-height: 0.92;
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(196, 163, 90, 0.18);
+}
+
+.justitia-inline {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--gold-soft);
+}
+
+.footer-mark {
+  margin-left: 10px;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  color: var(--gold);
 }
 
 .lead {
