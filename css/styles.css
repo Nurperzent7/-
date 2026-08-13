@@ -452,6 +452,45 @@ a {
   gap: 16px;
 }
 
+.limits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.limits li {
+  background: var(--paper);
+  border: 1px solid rgba(18, 35, 58, 0.08);
+  border-radius: var(--radius);
+  padding: 18px 22px 18px 28px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.limits li::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 26px;
+  width: 8px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.clause-note,
+.law a {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--navy);
+}
+
+.section-muted .law a {
+  color: var(--navy);
+  font-weight: 600;
+}
+
 .clause-box {
   background: var(--paper);
   border: 1px solid rgba(18, 35, 58, 0.08);
