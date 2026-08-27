@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f7f8;
+  --foreground: #171717;
+  --brand: #C90C07;
+  --brand-dark: #A00A06;
+  --surface: #ffffff;
+  --muted: #6b7280;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+* {
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+::selection {
+  background: rgba(200, 16, 46, 0.18);
+  color: #111;
+}
+
+/* Embed (iframe on luxmotors.kz / local site): hide marketing, no empty hero gap */
+html[data-embed="1"] .marketing-block {
+  display: none !important;
+}
+
+html[data-embed="1"],
+html[data-embed="1"] body,
+html[data-embed="1"] main {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+.embed-mode #calculator > * {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.embed-mode {
+  min-height: 0;
+  background: #f7f7f8;
+}
+
+/* Off-screen capture target for PNG download — must not affect mobile layout */
+.pdf-content {
+  position: fixed !important;
+  left: -10000px !important;
+  top: 0 !important;
+  width: 210mm !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+  overflow: hidden !important;
+}
