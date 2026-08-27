@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { logisticsDescriptionLine } from "@/lib/delivery"
 import { excludedFuelReason } from "@/lib/fuel-filter"
-import { authorizedImport } from "@/lib/import-auth"
+import { authorizedImport, calcImportSecret } from "@/lib/import-auth"
 import { classifyFromSavePayload } from "@/lib/special-vehicle"
 
 export const runtime = "nodejs"
@@ -108,11 +108,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json()
-    const secret = process.env.CALC_IMPORT_SECRET || process.env.CRON_SECRET || ""
-    if (process.env.VERCEL && !secret) {
-      return NextResponse.json({ error: "CALC_IMPORT_SECRET not configured" }, { status: 500 })
-    }
-    const backendSecret = secret || "luxmotors-calc-import-2026"
+    const backendSecret = calcImportSecret()
     // Locally default to local backend; on Vercel use production site
     const apiBase = (
       process.env.LUXMOTORS_API_URL ||

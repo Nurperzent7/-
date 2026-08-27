@@ -1,7 +1,10 @@
 import { NextRequest } from "next/server"
 
+const FALLBACK_IMPORT_SECRET = "luxmotors-calc-import-2026"
+
 const ALLOWED_ORIGINS = [
   "https://luxmotors-calc.vercel.app",
+  "https://luxmotors-calculator.vercel.app",
   "https://www.luxmotors.kz",
   "https://luxmotors.kz",
   "http://localhost:3000",
@@ -9,13 +12,18 @@ const ALLOWED_ORIGINS = [
 ]
 
 export function calcImportSecret(): string {
-  return process.env.CRON_SECRET || process.env.CALC_IMPORT_SECRET || ""
+  return process.env.CRON_SECRET || process.env.CALC_IMPORT_SECRET || FALLBACK_IMPORT_SECRET
 }
 
 function originAllowed(req: NextRequest): boolean {
   const origin = req.headers.get("origin") || ""
   const referer = req.headers.get("referer") || ""
-  return ALLOWED_ORIGINS.some((o) => origin.startsWith(o) || referer.startsWith(o))
+  if (ALLOWED_ORIGINS.some((o) => origin.startsWith(o) || referer.startsWith(o))) return true
+  const haystack = `${origin} ${referer}`
+  return (
+    (haystack.includes("luxmotors-calculator") || haystack.includes("luxmotors-calc")) &&
+    haystack.includes("vercel.app")
+  )
 }
 
 /** Cron / server-to-server / same-site calculator UI. */
